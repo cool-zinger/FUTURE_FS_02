@@ -160,3 +160,5 @@ Before production: finish the legal/business policy drafts, verify tax/receipt o
 - screenshots/: captured local UI checks
 - .env.example: placeholders only; .env is private local configuration
 
+#   F U T U R E _ F S _ 0 2  
+ 
