@@ -1,3 +1,4 @@
+import {routeUrl,currentPath} from './hosting.js';
 import React,{createContext,useContext,useEffect,useState,useRef} from 'react';
 import {X,LoaderCircle,CheckCircle2,AlertCircle} from 'lucide-react';
 export const AppContext=createContext(null);
@@ -5,9 +6,9 @@ export const useApp=()=>useContext(AppContext);
 export const money=(n,c='INR')=>new Intl.NumberFormat('en-IN',{style:'currency',currency:c,maximumFractionDigits:0}).format(Number(n||0)/100);
 export const date=x=>x?new Date(x).toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'}):'—';
 export const initials=n=>(n||'?').split(' ').map(s=>s[0]).slice(0,2).join('').toUpperCase();
-export function Link({to,children,...props}){return <a href={to} {...props} onClick={e=>{if(e.ctrlKey||e.metaKey)return;e.preventDefault();history.pushState({},'',to);window.dispatchEvent(new PopStateEvent('popstate'));props.onClick?.(e)}}>{children}</a>}
-export function navigate(to){history.pushState({},'',to);window.dispatchEvent(new PopStateEvent('popstate'));}
-export function usePath(){const [path,set]=useState(location.pathname);useEffect(()=>{const cb=()=>set(location.pathname);window.addEventListener('popstate',cb);return()=>window.removeEventListener('popstate',cb)},[]);return path;}
+export function Link({to,children,...props}){return <a href={routeUrl(to)} {...props} onClick={e=>{if(e.ctrlKey||e.metaKey)return;e.preventDefault();history.pushState({},'',routeUrl(to));window.dispatchEvent(new PopStateEvent('popstate'));props.onClick?.(e)}}>{children}</a>}
+export function navigate(to){history.pushState({},'',routeUrl(to));window.dispatchEvent(new PopStateEvent('popstate'));}
+export function usePath(){const [path,set]=useState(currentPath);useEffect(()=>{const cb=()=>set(currentPath());window.addEventListener('popstate',cb);window.addEventListener('hashchange',cb);return()=>{window.removeEventListener('popstate',cb);window.removeEventListener('hashchange',cb)}},[]);return path;}
 export function useData(path,deps=[]){const {api,workspace,revision}=useApp();const [data,set]=useState(null),[error,setError]=useState(''),[loading,setLoading]=useState(true);useEffect(()=>{let active=true;setLoading(true);setError('');api(path).then(d=>active&&set(d)).catch(e=>active&&setError(e.message)).finally(()=>active&&setLoading(false));return()=>{active=false}},[path,workspace,revision,...deps]);return {data,error,loading,set};}
 export function Loading(){return <div className="state"><LoaderCircle className="spin" size={25}/><p>Loading your workspace…</p></div>}
 export function Empty({title='Nothing here yet',text='Add your first record to get started.',children}){return <div className="state empty"><span className="empty-symbol">✧</span><h3>{title}</h3><p>{text}</p>{children}</div>}
