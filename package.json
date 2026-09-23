@@ -1,0 +1,47 @@
+{
+  "name": "leadnest",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node server/index.js",
+    "build": "vite build",
+    "start": "node server/index.js",
+    "migrate": "node scripts/migrate.js",
+    "seed": "node scripts/seed.js",
+    "test": "node --test --test-concurrency=1 tests/*.test.js",
+    "bootstrap-owner": "node scripts/bootstrap-owner.js",
+    "worker": "node server/worker.js",
+    "mailbox": "node scripts/mailbox.js",
+    "test:browser": "node scripts/browser-check.mjs",
+    "email:check": "node scripts/check-email.mjs",
+    "production:check": "node scripts/check-production.mjs"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "latest",
+    "@vitejs/plugin-react": "latest",
+    "cookie-parser": "latest",
+    "csv-parse": "latest",
+    "dotenv": "latest",
+    "express": "^5.2.1",
+    "express-rate-limit": "latest",
+    "google-auth-library": "latest",
+    "helmet": "latest",
+    "knex": "^3.1.0",
+    "lucide-react": "latest",
+    "mysql2": "latest",
+    "nodemailer": "latest",
+    "otpauth": "latest",
+    "pdfkit": "latest",
+    "razorpay": "^2.9.8",
+    "react": "latest",
+    "react-dom": "latest",
+    "recharts": "latest",
+    "vite": "latest",
+    "zod": "latest"
+  },
+  "devDependencies": {
+    "@playwright/test": "latest",
+    "supertest": "latest"
+  }
+}

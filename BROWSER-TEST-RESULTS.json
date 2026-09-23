@@ -1,0 +1,28 @@
+{
+  "passed": 22,
+  "results": [
+    "Home page rendered",
+    "Login and database dashboard rendered",
+    "Lead creation modal saved",
+    "Lead persisted after reload and stage edit saved",
+    "Archive hides active record without deleting",
+    "contacts rendered",
+    "companies rendered",
+    "deals rendered",
+    "tasks rendered",
+    "notes rendered",
+    "pipeline rendered",
+    "team rendered",
+    "email rendered",
+    "invoices rendered",
+    "billing rendered",
+    "settings rendered",
+    "ai rendered",
+    "support rendered",
+    "Dark mode persists after reload",
+    "Mobile menu navigation works",
+    "Mobile public page has no horizontal overflow",
+    "No browser runtime errors"
+  ],
+  "errors": []
+}

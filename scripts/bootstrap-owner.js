@@ -1,0 +1,7 @@
+import {db} from '../server/db.js';
+import {id,passwordHash} from '../server/security.js';
+import {createWorkspace} from '../server/plans.js';
+import * as OTPAuth from 'otpauth';
+import {writeFile} from 'node:fs/promises';
+try{const email=process.env.OWNER_BOOTSTRAP_EMAIL?.toLowerCase(),password=process.env.OWNER_BOOTSTRAP_PASSWORD;if(!email||!password||password.length<16)throw Error('Set OWNER_BOOTSTRAP_EMAIL and a unique OWNER_BOOTSTRAP_PASSWORD of at least 16 characters locally.');if(await db('users').where({platform_owner:true}).first())throw Error('An owner already exists; bootstrap is disabled.');const secret=process.env.OWNER_TOTP_SECRET||new OTPAuth.Secret({size:20}).base32;const uri=new OTPAuth.TOTP({issuer:'LeadNest',label:email,secret:OTPAuth.Secret.fromBase32(secret)}).toString();await db.transaction(async k=>{if(await k('users').where({email}).first())throw Error('Use a new dedicated owner email');const uid=id();await k('users').insert({id:uid,email,name:'Platform owner',password_hash:passwordHash(password),verified:true,platform_owner:true,totp_secret:secret});await createWorkspace(k,uid,'Platform owner');});await writeFile('OWNER-MFA-SETUP.txt','Import this URI into your authenticator. Store securely, then delete this file.\n'+uri+'\n');console.log('Owner created. Enrol your authenticator using OWNER-MFA-SETUP.txt. Remove bootstrap password from .env.');}finally{await db.destroy();}
+

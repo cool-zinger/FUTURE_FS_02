@@ -1,0 +1,15 @@
+{
+  "passed": 9,
+  "results": [
+    "Signup honestly identifies local email test mode",
+    "Chrome and Edge cannot create sessions before email verification",
+    "Resend preserves the account address and reports delivery mode",
+    "Verification works in another browser and cannot be resubmitted in the same form",
+    "Verified Chrome and Edge sessions work together, including localhost alias",
+    "Temporary session lookup failure offers retry and preserves authentication",
+    "Signing out of Chrome leaves Edge signed in",
+    "Missing email configuration shows an actionable error without claiming delivery",
+    "No Chrome or Edge runtime errors"
+  ],
+  "errors": []
+}

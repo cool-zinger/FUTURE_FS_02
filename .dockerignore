@@ -1,0 +1,14 @@
+*
+!Dockerfile
+!package.json
+!package-lock.json
+!index.html
+!vite.config.js
+!client/**
+!public/**
+!server/**
+!migrations/**
+!scripts/migrate.js
+!scripts/bootstrap-owner.js
+!scripts/check-production.mjs
+!scripts/check-email.mjs

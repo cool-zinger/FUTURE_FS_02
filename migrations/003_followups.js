@@ -1,0 +1,1 @@
+export async function up(k){await k.schema.alterTable('reminders',t=>{t.uuid('lead_id').references('leads.id');t.unique(['lead_id','due_at']);});for(const table of ['leads','deals'])await k.schema.alterTable(table,t=>t.foreign(['workspace_id','pipeline_id']).references(['workspace_id','id']).inTable('pipelines'));}export async function down(){throw Error('Use backup restore');}

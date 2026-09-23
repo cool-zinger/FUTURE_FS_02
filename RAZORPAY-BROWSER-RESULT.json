@@ -1,0 +1,7 @@
+{
+  "passed": true,
+  "provider": "Razorpay Standard Checkout",
+  "test": true,
+  "modal": "Provider iframe rendered from the real checkout SDK",
+  "payment_completed": false
+}

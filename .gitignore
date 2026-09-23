@@ -1,0 +1,15 @@
+node_modules/
+dist/
+.env
+.env.test
+.env.*
+!.env.example
+!.env.production.example
+work/
+*.log
+test-results/
+DEVELOPMENT-ACCESS.txt
+OWNER-MFA-SETUP.txt
+
+.local-db.json
+screenshots/browser-failure.png
