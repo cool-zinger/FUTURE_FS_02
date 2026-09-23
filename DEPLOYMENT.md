@@ -1,5 +1,11 @@
 # LeadNest Docker deployment
 
+## GitHub Pages website preview
+
+The Pages workflow builds React with the repository base path and publishes `dist`. In GitHub Settings > Pages, select **GitHub Actions** as the source. The site is https://cool-zinger.github.io/FUTURE_FS_02/ . Hash-based navigation keeps preview links working after refresh. Logos use the same repository base path.
+
+Pages hosts the public website preview only. It does not run Express, MySQL, authentication or payments. The preview clearly labels this limitation and does not collect credentials or attempt payment requests. For full CRM functionality follow the server deployment instructions below. Normal Docker builds retain server-backed routes and authentication.
+
 This repository contains a React frontend, an Express server and a MySQL database application. GitHub Pages cannot run the server or database. The Docker setup runs one application instance, one private MySQL instance, and Caddy for HTTPS. It does not purchase hosting or activate a merchant account.
 
 ## Prepare the server
